@@ -165,7 +165,7 @@ public class Wallet extends javax.swing.JFrame {
                 btnDeleteActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 190, -1, -1));
+        jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, -1, -1));
 
         btnClear.setText("Clear");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
@@ -173,7 +173,7 @@ public class Wallet extends javax.swing.JFrame {
                 btnClearActionPerformed(evt);
             }
         });
-        jPanel1.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 110, -1, -1));
+        jPanel1.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 110, -1, -1));
 
         btnClose.setText("Close");
         btnClose.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -182,7 +182,7 @@ public class Wallet extends javax.swing.JFrame {
                 btnCloseActionPerformed(evt);
             }
         });
-        jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 150, -1, -1));
+        jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, -1, -1));
 
         cbType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", " " }));
         jPanel1.add(cbType, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 220, -1));
