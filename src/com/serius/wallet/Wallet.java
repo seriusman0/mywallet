@@ -81,6 +81,7 @@ public class Wallet extends javax.swing.JFrame {
         btnClose = new javax.swing.JButton();
         cbType = new javax.swing.JComboBox<>();
         txtIDTr = new javax.swing.JTextField();
+        monStat = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -149,7 +150,7 @@ public class Wallet extends javax.swing.JFrame {
                 btnAddActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, -1, -1));
+        jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 170, -1, -1));
 
         btnEdit.setText("Edit");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -157,7 +158,7 @@ public class Wallet extends javax.swing.JFrame {
                 btnEditActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, -1, -1));
+        jPanel1.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, -1, -1));
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -165,7 +166,7 @@ public class Wallet extends javax.swing.JFrame {
                 btnDeleteActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 200, -1, -1));
+        jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, -1, -1));
 
         btnClear.setText("Clear");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
@@ -173,7 +174,7 @@ public class Wallet extends javax.swing.JFrame {
                 btnClearActionPerformed(evt);
             }
         });
-        jPanel1.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 110, -1, -1));
+        jPanel1.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, -1, -1));
 
         btnClose.setText("Close");
         btnClose.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -182,7 +183,7 @@ public class Wallet extends javax.swing.JFrame {
                 btnCloseActionPerformed(evt);
             }
         });
-        jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, -1, -1));
+        jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, -1, -1));
 
         cbType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", " " }));
         jPanel1.add(cbType, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 220, -1));
@@ -194,6 +195,15 @@ public class Wallet extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtIDTr, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 30, -1));
+
+        monStat.setBackground(new java.awt.Color(223, 65, 65));
+        monStat.setText("Rp. ");
+        monStat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                monStatActionPerformed(evt);
+            }
+        });
+        jPanel1.add(monStat, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 130, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 562, 451));
 
@@ -287,6 +297,10 @@ public class Wallet extends javax.swing.JFrame {
         clearForm();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void monStatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monStatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_monStatActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -339,6 +353,7 @@ public class Wallet extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField monStat;
     private javax.swing.JTable tbHistory;
     private javax.swing.JTextField txtAbout;
     private javax.swing.JTextField txtIDTr;
