@@ -19,6 +19,19 @@ public class Wallet extends javax.swing.JFrame {
         txtAbout.setText(null);
     }
     
+//    private void jumlah() {
+//        
+//        try{
+//            String sql = "SELECT sum(value) FROM transaction WHERE transaction.type = 0";
+//            java.sql.Connection conn = (Connection)Config.configDB();
+//            java.sql.Statement stm = conn.createStatement();
+//            java.sql.ResultSet res = stm.executeQuery(sql);
+//            rest.setText("Oke");
+//        }catch(SQLException e){
+//            rest.setText(e.getMessage());
+//        }
+//    }
+    
     private void showData(){
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("No");
@@ -29,8 +42,9 @@ public class Wallet extends javax.swing.JFrame {
         model.addColumn("Value");
         
         try{
+//            jumlah();
             int no = 1;
-            String sql = "SELECT id, date, type, about, value FROM transaction";
+            String sql = "SELECT sum(value), id, date, type, about, value FROM transaction";
             java.sql.Connection conn = (Connection)Config.configDB();
             java.sql.Statement stm = conn.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
@@ -81,7 +95,7 @@ public class Wallet extends javax.swing.JFrame {
         btnClose = new javax.swing.JButton();
         cbType = new javax.swing.JComboBox<>();
         txtIDTr = new javax.swing.JTextField();
-        monStat = new javax.swing.JTextField();
+        rest = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -196,14 +210,14 @@ public class Wallet extends javax.swing.JFrame {
         });
         jPanel1.add(txtIDTr, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 30, -1));
 
-        monStat.setBackground(new java.awt.Color(223, 65, 65));
-        monStat.setText("Rp. ");
-        monStat.addActionListener(new java.awt.event.ActionListener() {
+        rest.setBackground(new java.awt.Color(223, 65, 65));
+        rest.setText("Rp. ");
+        rest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                monStatActionPerformed(evt);
+                restActionPerformed(evt);
             }
         });
-        jPanel1.add(monStat, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 130, 50));
+        jPanel1.add(rest, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 130, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 562, 451));
 
@@ -297,9 +311,9 @@ public class Wallet extends javax.swing.JFrame {
         clearForm();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void monStatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monStatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_monStatActionPerformed
+    private void restActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restActionPerformed
+       
+    }//GEN-LAST:event_restActionPerformed
 
     /**
      * @param args the command line arguments
@@ -353,7 +367,7 @@ public class Wallet extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField monStat;
+    private javax.swing.JTextField rest;
     private javax.swing.JTable tbHistory;
     private javax.swing.JTextField txtAbout;
     private javax.swing.JTextField txtIDTr;
