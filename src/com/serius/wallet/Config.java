@@ -8,6 +8,7 @@ package com.serius.wallet;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 
 public class Config {
@@ -28,5 +29,11 @@ public class Config {
         return MySQLConfig;
     }
     
-//    public static idDate
+    public static void fconn(String sql) throws SQLException{
+            java.sql.Connection conn;
+            conn = (Connection)Config.configDB();
+            java.sql.PreparedStatement pstm = conn.prepareStatement(sql);
+            pstm.execute();
+            JOptionPane.showMessageDialog(null, "Success to Execute Command");  
+    }
 }

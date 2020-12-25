@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 public class Wallet extends javax.swing.JFrame {
 
     private void clearForm(){
+        showRest();
         dateTr.setEditable(true);
         dateTr.setText(null);
         cbType.setSelectedItem(this);
@@ -48,14 +49,15 @@ public class Wallet extends javax.swing.JFrame {
         
         try{
             int no = 1;
-            String sql = "SELECT SUM(value) FROM transaction WHERE type = 0";
+            String sql = "SELECT (SELECT SUM(value) FROM `transaction` WHERE `type`=1)-(SELECT SUM(value) FROM `transaction` WHERE `type`= 0) FROM `transaction` LIMIT 1";
             java.sql.Connection conn = (Connection)Config.configDB();
             java.sql.Statement stm = conn.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
-            
+                        
             while(res.next()){
-                restCount.setText("Rp " + res.getString(1));
+                lblSaldo.setText(String.valueOf(Convertion.rp(Integer.parseInt(res.getString(1)))));
             }
+            
         }catch(SQLException e){
             System.out.println("Error get data from DB "+ e.getMessage());
         }
@@ -96,21 +98,23 @@ public class Wallet extends javax.swing.JFrame {
         btnClose = new javax.swing.JButton();
         cbType = new javax.swing.JComboBox<>();
         txtIDTr = new javax.swing.JTextField();
-        restCount = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        lblSaldo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(160, 153, 153));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Electronic Wallet ");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 0, 210, 70));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 390, 70));
 
         jLabel2.setFont(new java.awt.Font("Open Sans", 2, 12)); // NOI18N
         jLabel2.setText("by serius apps");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, -1, -1));
 
         jLabel3.setText("Date");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, -1, -1));
@@ -158,6 +162,7 @@ public class Wallet extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 520, 160));
 
+        btnAdd.setBackground(new java.awt.Color(1, 1, 1));
         btnAdd.setText("Add");
         btnAdd.setToolTipText("");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -165,7 +170,7 @@ public class Wallet extends javax.swing.JFrame {
                 btnAddActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 170, -1, -1));
+        jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, -1, -1));
 
         btnEdit.setText("Edit");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -173,15 +178,16 @@ public class Wallet extends javax.swing.JFrame {
                 btnEditActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, -1, -1));
+        jPanel1.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 410, -1, -1));
 
+        btnDelete.setBackground(new java.awt.Color(234, 12, 12));
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, -1, -1));
+        jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, -1, -1));
 
         btnClear.setText("Clear");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
@@ -189,7 +195,7 @@ public class Wallet extends javax.swing.JFrame {
                 btnClearActionPerformed(evt);
             }
         });
-        jPanel1.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, -1, -1));
+        jPanel1.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 170, -1, -1));
 
         btnClose.setText("Close");
         btnClose.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -198,7 +204,7 @@ public class Wallet extends javax.swing.JFrame {
                 btnCloseActionPerformed(evt);
             }
         });
-        jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, -1, -1));
+        jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 250, -1, -1));
 
         cbType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", " " }));
         jPanel1.add(cbType, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 220, -1));
@@ -211,16 +217,12 @@ public class Wallet extends javax.swing.JFrame {
         });
         jPanel1.add(txtIDTr, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 30, -1));
 
-        restCount.setBackground(new java.awt.Color(223, 65, 65));
-        restCount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        restCount.setText("Rp. ");
-        restCount.setToolTipText("");
-        restCount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                restCountActionPerformed(evt);
-            }
-        });
-        jPanel1.add(restCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 130, 50));
+        jLabel7.setText("Saldo");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, -1, 30));
+
+        lblSaldo.setFont(new java.awt.Font("URW Bookman", 0, 14)); // NOI18N
+        lblSaldo.setText("..............");
+        jPanel1.add(lblSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 60, 70));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 562, 451));
 
@@ -233,7 +235,7 @@ public class Wallet extends javax.swing.JFrame {
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         clearForm();
-        dateTr.setFocusable(true);
+        dateTr.requestFocus();
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
@@ -244,19 +246,13 @@ public class Wallet extends javax.swing.JFrame {
         
         try {
             String sql = "INSERT INTO transaction VALUES (null, '" + dateTr.getText() + "', '" + cbType.getSelectedItem() + "', '" + txtAbout.getText() + "', '" + Integer.parseInt(intVal.getText()) + "')";
-            java.sql.Connection conn;
-            conn = (Connection)Config.configDB();
-            java.sql.PreparedStatement pstm = conn.prepareStatement(sql);
-            pstm.execute();
-            JOptionPane.showMessageDialog(null, "Success to add data to database");
+            Config.fconn(sql);
             showData();
             clearForm();          
             
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Add data failed cause " + e.getMessage());
         }
-        
-        
         
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -303,9 +299,7 @@ public class Wallet extends javax.swing.JFrame {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         try{
             String sql = "DELETE FROM transaction WHERE id = '"+txtIDTr.getText()+"'";
-            java.sql.Connection conn = (Connection)Config.configDB();
-            java.sql.PreparedStatement pstm = conn.prepareStatement(sql);
-            pstm.execute();
+            Config.fconn(sql);
             JOptionPane.showMessageDialog(null, "Delete Complete");
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, e.getMessage());
@@ -313,10 +307,6 @@ public class Wallet extends javax.swing.JFrame {
         showData();
         clearForm();
     }//GEN-LAST:event_btnDeleteActionPerformed
-
-    private void restCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restCountActionPerformed
-       
-    }//GEN-LAST:event_restCountActionPerformed
 
     /**
      * @param args the command line arguments
@@ -351,6 +341,7 @@ public class Wallet extends javax.swing.JFrame {
                 new Wallet().setVisible(true);
             }
         });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -368,9 +359,10 @@ public class Wallet extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField restCount;
+    private javax.swing.JLabel lblSaldo;
     private javax.swing.JTable tbHistory;
     private javax.swing.JTextField txtAbout;
     private javax.swing.JTextField txtIDTr;
