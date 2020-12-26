@@ -97,9 +97,9 @@ public class Wallet extends javax.swing.JFrame {
         btnClear = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
         cbType = new javax.swing.JComboBox<>();
-        txtIDTr = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         lblSaldo = new javax.swing.JLabel();
+        txtIDTr = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -162,7 +162,7 @@ public class Wallet extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 520, 160));
 
-        btnAdd.setBackground(new java.awt.Color(1, 1, 1));
+        btnAdd.setBackground(new java.awt.Color(5, 254, 40));
         btnAdd.setText("Add");
         btnAdd.setToolTipText("");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -170,7 +170,7 @@ public class Wallet extends javax.swing.JFrame {
                 btnAddActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, -1, -1));
+        jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 90, 90));
 
         btnEdit.setText("Edit");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -187,7 +187,7 @@ public class Wallet extends javax.swing.JFrame {
                 btnDeleteActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, -1, -1));
+        jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 220, 60, -1));
 
         btnClear.setText("Clear");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
@@ -195,7 +195,7 @@ public class Wallet extends javax.swing.JFrame {
                 btnClearActionPerformed(evt);
             }
         });
-        jPanel1.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 170, -1, -1));
+        jPanel1.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, 60, -1));
 
         btnClose.setText("Close");
         btnClose.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -204,10 +204,19 @@ public class Wallet extends javax.swing.JFrame {
                 btnCloseActionPerformed(evt);
             }
         });
-        jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 250, -1, -1));
+        jPanel1.add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 250, 60, -1));
 
         cbType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", " " }));
         jPanel1.add(cbType, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 220, -1));
+
+        jLabel7.setText("Saldo");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, -1, 30));
+
+        lblSaldo.setFont(new java.awt.Font("URW Bookman", 0, 14)); // NOI18N
+        lblSaldo.setText("..............");
+        jPanel1.add(lblSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 170, 70));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 562, 451));
 
         txtIDTr.setEnabled(false);
         txtIDTr.addActionListener(new java.awt.event.ActionListener() {
@@ -215,16 +224,7 @@ public class Wallet extends javax.swing.JFrame {
                 txtIDTrActionPerformed(evt);
             }
         });
-        jPanel1.add(txtIDTr, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 30, -1));
-
-        jLabel7.setText("Saldo");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, -1, 30));
-
-        lblSaldo.setFont(new java.awt.Font("URW Bookman", 0, 14)); // NOI18N
-        lblSaldo.setText("..............");
-        jPanel1.add(lblSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 60, 70));
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 562, 451));
+        getContentPane().add(txtIDTr, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 30, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
